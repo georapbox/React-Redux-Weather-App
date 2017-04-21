@@ -1,0 +1,7 @@
+@import '~bootstrap/scss/bootstrap';
+
+@include media-breakpoint-down(sm) {
+  html {
+    font-size: 14px;
+  }
+}
