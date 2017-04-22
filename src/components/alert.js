@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Alert = props => {
   return (
-    <div className={`alert alert-${props.type} ${!props.visible && 'd-none'}`} role="alert">
+    <div className={`alert ${!props.visible ? 'd-none' : ''} alert-${props.type}`} role="alert">
       <button type="button" className="close" onClick={() => props.onHideError()}>
         <span>&times;</span>
       </button>

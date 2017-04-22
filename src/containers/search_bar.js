@@ -57,7 +57,7 @@ class SearchBar extends Component {
 
           <span className="input-group-btn">
             <Spinner visible={this.state.isFetching} customClass='search-bar__spinner' />
-            <button className="btn btn-secondary" type="submit">Search</button>
+            <button className="btn btn-secondary" type="submit" role="button">Search</button>
           </span>
         </form>
 
