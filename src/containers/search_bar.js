@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchWeather} from '../actions';
 import Spinner from '../components/spinner';
+import Alert from '../components/alert';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class SearchBar extends Component {
 
     this.state = {
       term: '',
-      isFetching: false
+      isFetching: false,
+      error: false
     };
   }
 
@@ -26,26 +28,45 @@ class SearchBar extends Component {
 
     this.props
       .fetchWeather(this.state.term)
-      .then(() => this.setState({term: '', isFetching: false}));
+      .then(response => {
+        if (response.error) {
+          this.setState({isFetching: false, error: true});
+          console.error(response.payload);
+          return response;
+        }
+        this.setState({term: '', isFetching: false, error: false});
+      });
+  }
+
+  onHideError() {
+    this.setState({error: false});
   }
 
   render() {
     return (
-      <form className="input-group" onSubmit={this.onFormSubmit.bind(this)}>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Get a five-day forecast for your favorite cities"
-          required
-          autoFocus
-          value={this.state.term}
-          onChange={this.onInputChange.bind(this)} />
+      <div>
+        <form className="input-group" onSubmit={this.onFormSubmit.bind(this)}>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Get a five-day forecast for your favorite cities"
+            required
+            autoFocus
+            value={this.state.term}
+            onChange={this.onInputChange.bind(this)} />
 
-        <span className="input-group-btn">
-          <Spinner visible={this.state.isFetching} customClass='search-bar__spinner' />
-          <button className="btn btn-secondary" type="submit">Search</button>
-        </span>
-      </form>
+          <span className="input-group-btn">
+            <Spinner visible={this.state.isFetching} customClass='search-bar__spinner' />
+            <button className="btn btn-secondary" type="submit">Search</button>
+          </span>
+        </form>
+
+        <Alert
+          type="danger"
+          message="Ooooops!!! Something went terribly wrong!"
+          visible={this.state.error}
+          onHideError={this.onHideError.bind(this)} />
+      </div>
     );
   }
 }
