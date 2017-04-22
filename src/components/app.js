@@ -14,7 +14,7 @@ class App extends Component {
         </div>
 
         <div className="row">
-          <div className="col-md-8 offset-md-2">
+          <div className="col-lg-4 offset-lg-4 col-md-8 offset-md-2">
             <SearchBar />
           </div>
         </div>

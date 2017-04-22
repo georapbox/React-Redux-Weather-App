@@ -45,20 +45,23 @@ class SearchBar extends Component {
   render() {
     return (
       <div className="search-bar">
-        <form className="input-group" onSubmit={this.onFormSubmit.bind(this)}>
-          <input
-            type="text"
-            className="form-control search-bar__input"
-            placeholder="Get a five-day forecast for your favorite cities"
-            required
-            autoFocus
-            value={this.state.term}
-            onChange={this.onInputChange.bind(this)} />
+        <form onSubmit={this.onFormSubmit.bind(this)}>
+          <label htmlFor="">Get a five-day forecast for your favorite cities</label>
+          <div className="input-group">
+            <input
+              type="text"
+              className="form-control search-bar__input"
+              placeholder="Search..."
+              required
+              autoFocus
+              value={this.state.term}
+              onChange={this.onInputChange.bind(this)} />
 
-          <span className="input-group-btn">
-            <Spinner visible={this.state.isFetching} customClass='search-bar__spinner' />
-            <button className="btn btn-secondary" type="submit" role="button">Search</button>
-          </span>
+            <span className="input-group-btn">
+              <Spinner visible={this.state.isFetching} customClass='search-bar__spinner' />
+              <button className="btn btn-secondary" type="submit" role="button">Search</button>
+            </span>
+          </div>
         </form>
 
         <Alert
