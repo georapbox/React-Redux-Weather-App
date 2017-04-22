@@ -1,6 +1,7 @@
 import '../styles/main.scss';
 import React, {Component} from 'react';
 import SearchBar from '../containers/search_bar';
+import WeatherList from '../containers/weather_list';
 
 class App extends Component {
   render() {
@@ -15,6 +16,12 @@ class App extends Component {
         <div className="row">
           <div className="col-md-8 offset-md-2">
             <SearchBar />
+          </div>
+        </div>
+
+        <div className="row mt-4">
+          <div className="col-md-12">
+            <WeatherList />
           </div>
         </div>
       </div>
