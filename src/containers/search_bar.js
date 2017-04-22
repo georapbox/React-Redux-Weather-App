@@ -44,11 +44,11 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div>
+      <div className="search-bar">
         <form className="input-group" onSubmit={this.onFormSubmit.bind(this)}>
           <input
             type="text"
-            className="form-control"
+            className="form-control search-bar__input"
             placeholder="Get a five-day forecast for your favorite cities"
             required
             autoFocus
