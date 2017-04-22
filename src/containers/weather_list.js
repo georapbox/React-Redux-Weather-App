@@ -6,36 +6,35 @@ import Chart from '../components/chart';
 class WeatherList extends Component {
   renderWeather(cityData) {
     const {city, list} = cityData;
-    // const temperatures = list.map(weather => weather.main.temp);
-    // const pressures = list.map(weather => weather.main.pressure);
-    // const humidities = list.map(weather => weather.main.humidity);
-
     const charts = [
       {
         type: 'temperature',
-        data: list.map(weather => weather.main.temp),
-        color: 'red'
+        data: list.map(weather => weather.main.temp - 273.15),
+        color: 'orange',
+        units: 'C'
       },
       {
         type: 'pressure',
         data: list.map(weather => weather.main.pressure),
-        color: 'green'
+        color: 'green',
+        units: 'hPa'
       },
       {
         type: 'humidity',
         data: list.map(weather => weather.main.humidity),
-        color: 'blue'
+        color: 'black',
+        units: '%'
       }
     ];
 
     return (
       <tr key={city.id}>
-        <td>{city.name}</td>
+        <td className="align-middle">{city.name}</td>
         {
           charts.map(chart => {
             return (
-              <td key={chart.type}>
-                <Chart data={chart.data} color={chart.color} />
+              <td className="align-middle" key={chart.type}>
+                <Chart data={chart.data} color={chart.color} units={chart.units} />
               </td>
             );
           })
@@ -50,13 +49,13 @@ class WeatherList extends Component {
     }
 
     return (
-      <table className="table table-hover">
-        <thead>
+      <table className="table table-hover table-bordered">
+        <thead className="thead-inverse">
           <tr>
-            <th>City</th>
-            <th>Temperature</th>
-            <th>Pressure</th>
-            <th>Humidity</th>
+            <th className="font-weight-normal">City</th>
+            <th className="font-weight-normal">Temperature (C)</th>
+            <th className="font-weight-normal">Pressure (hPa)</th>
+            <th className="font-weight-normal">Humidity (%)</th>
           </tr>
         </thead>
         <tbody>
