@@ -1,4 +1,4 @@
-# React-Redux-Book-List-App
+# React-Redux-Weather-App
 
 Weather application made with React and Redux based on [Modern React with Redux](https://udemy.com/react-redux) tutorial.
 
