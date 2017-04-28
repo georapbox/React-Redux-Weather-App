@@ -68,6 +68,7 @@ class WeatherList extends Component {
           component="tbody"
           transitionName="fade"
           transitionAppear={true}
+          transitionAppearTimeout={350}
           transitionEnterTimeout={350}
           transitionLeaveTimeout={350}>
           {this.props.weather.map(this.renderWeather)}
