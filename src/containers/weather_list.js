@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Chart from '../components/chart';
 import GoogleMap from '../components/google_map';
 
@@ -62,9 +63,15 @@ class WeatherList extends Component {
             <th className="font-weight-normal">Humidity (%)</th>
           </tr>
         </thead>
-        <tbody>
+
+        <CSSTransitionGroup
+          component="tbody"
+          transitionName="fade"
+          transitionAppear={true}
+          transitionEnterTimeout={350}
+          transitionLeaveTimeout={350}>
           {this.props.weather.map(this.renderWeather)}
-        </tbody>
+        </CSSTransitionGroup>
       </table>
     );
   }
