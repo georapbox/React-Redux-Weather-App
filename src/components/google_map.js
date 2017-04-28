@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 class GoogleMap extends Component {
+  shouldComponentUpdate() {
+    return false; // Do not re-render if new set of props received.
+  }
+
   componentDidMount() {
     new window.google.maps.Map(this.refs.map, {
       zoom: 12,
